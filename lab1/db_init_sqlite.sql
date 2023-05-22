@@ -1,55 +1,63 @@
+-- Определение схемы для SQLite3
 CREATE TABLE Users (
-    UserID TEXT PRIMARY KEY,
+    UserID INTEGER PRIMARY KEY,
     FirstName TEXT,
     LastName TEXT,
     Phone TEXT,
     Email TEXT UNIQUE,
-    Password TEXT -- should be hashed
+    Password TEXT
 );
 
 CREATE TABLE Drivers (
-    DriverID TEXT PRIMARY KEY,
+    DriverID INTEGER PRIMARY KEY,
     FirstName TEXT,
     LastName TEXT,
     Phone TEXT,
     Email TEXT UNIQUE,
-    Password TEXT, -- should be hashed
+    Password TEXT,
     Status TEXT,
     Rating REAL
 );
 
+CREATE TABLE CarTypes (
+    TypeID INTEGER PRIMARY KEY,
+    TypeName TEXT
+);
+
 CREATE TABLE Cars (
-    CarID TEXT PRIMARY KEY,
-    DriverID TEXT,
+    CarID INTEGER PRIMARY KEY,
+    DriverID INTEGER,
+    TypeID INTEGER,
     Brand TEXT,
     Model TEXT,
-    Year INT,
+    Year INTEGER,
     PlateNumber TEXT,
-    FOREIGN KEY (DriverID) REFERENCES Drivers(DriverID)
+    FOREIGN KEY(DriverID) REFERENCES Drivers(DriverID),
+    FOREIGN KEY(TypeID) REFERENCES CarTypes(TypeID)
 );
 
 CREATE TABLE Orders (
-    OrderID TEXT PRIMARY KEY,
-    UserID TEXT,
-    DriverID TEXT,
+    OrderID INTEGER PRIMARY KEY,
+    UserID INTEGER,
+    DriverID INTEGER,
     OrderTime TEXT,
     ArrivalTime TEXT,
     EndTime TEXT,
     Departure TEXT,
     Destination TEXT,
     Cost REAL,
-    FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (DriverID) REFERENCES Drivers(DriverID)
+    FOREIGN KEY(UserID) REFERENCES Users(UserID),
+    FOREIGN KEY(DriverID) REFERENCES Drivers(DriverID)
 );
 
 CREATE TABLE Reviews (
-    ReviewID TEXT PRIMARY KEY,
-    UserID TEXT,
-    DriverID TEXT,
-    OrderID TEXT,
+    ReviewID INTEGER PRIMARY KEY,
+    UserID INTEGER,
+    DriverID INTEGER,
+    OrderID INTEGER,
     Rating REAL,
     Comment TEXT,
-    FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (DriverID) REFERENCES Drivers(DriverID),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+    FOREIGN KEY(UserID) REFERENCES Users(UserID),
+    FOREIGN KEY(DriverID) REFERENCES Drivers(DriverID),
+    FOREIGN KEY(OrderID) REFERENCES Orders(OrderID)
 );
