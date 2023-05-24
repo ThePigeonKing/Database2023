@@ -61,17 +61,25 @@ if __name__ == "__main__":
     USRS = int(input("Количество Users: "))
     DRVRS = USRS // 5
     CRS = DRVRS
-    ORDRS = USRS // 2
-    RVWS = USRS*2
+    ORDRS = USRS * 5
+    RVWS = round(USRS * 0.75)
 
 
     # Users
     for i in range(USRS):
-        add_user(cursor, fake.first_name(), fake.last_name(), fake.phone_number(), fake.email(), fake.password())
+        em = fake.email().split("@")
+        randnum = random.randint(1, 100)
+        email = em[0] + str(randnum) + "@" + em[1]
+
+        add_user(cursor, fake.first_name(), fake.last_name(), fake.phone_number(), email, fake.password())
 
     # Drivers
     for i in range(DRVRS): 
-        add_driver(cursor, fake.first_name(), fake.last_name(), fake.phone_number(), fake.email(), fake.password(), "Available", round(random.uniform(3.0, 5.0), 1))
+        em = fake.email().split("@")
+        randnum = random.randint(1, 100)
+        email = em[0] + str(randnum) + "@" + em[1]
+        
+        add_driver(cursor, fake.first_name(), fake.last_name(), fake.phone_number(), email, fake.password(), "Available", round(random.uniform(3.0, 5.0), 1))
 
     # CarTypes
     car_types = ['Sedan', 'SUV', 'Van', 'Convertible']
@@ -86,7 +94,7 @@ if __name__ == "__main__":
 
     # Orders
     for i in range(ORDRS):
-        user_id = i + 1
+        user_id = random.randint(1, USRS)
         driver_id = random.randint(1, DRVRS)
         add_order(cursor, user_id, driver_id, fake.date_time_this_year(), fake.date_time_this_year(), fake.date_time_this_year(), fake.address(), fake.address(), fake.random_int(min=10, max=1500))
 
