@@ -1,6 +1,5 @@
--- Определение схемы для SQLite3
 CREATE TABLE Users (
-    UserID INTEGER PRIMARY KEY,
+    UserID INTEGER PRIMARY KEY AUTOINCREMENT,
     FirstName TEXT,
     LastName TEXT,
     Phone TEXT,
@@ -9,7 +8,7 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Drivers (
-    DriverID INTEGER PRIMARY KEY,
+    DriverID INTEGER PRIMARY KEY AUTOINCREMENT,
     FirstName TEXT,
     LastName TEXT,
     Phone TEXT,
@@ -20,12 +19,12 @@ CREATE TABLE Drivers (
 );
 
 CREATE TABLE CarTypes (
-    TypeID INTEGER PRIMARY KEY,
+    TypeID INTEGER PRIMARY KEY AUTOINCREMENT,
     TypeName TEXT
 );
 
 CREATE TABLE Cars (
-    CarID INTEGER PRIMARY KEY,
+    CarID INTEGER PRIMARY KEY AUTOINCREMENT,
     DriverID INTEGER,
     TypeID INTEGER,
     Brand TEXT,
@@ -37,7 +36,7 @@ CREATE TABLE Cars (
 );
 
 CREATE TABLE Orders (
-    OrderID INTEGER PRIMARY KEY,
+    OrderID INTEGER PRIMARY KEY AUTOINCREMENT,
     UserID INTEGER,
     DriverID INTEGER,
     OrderTime TEXT,
@@ -51,7 +50,7 @@ CREATE TABLE Orders (
 );
 
 CREATE TABLE Reviews (
-    ReviewID INTEGER PRIMARY KEY,
+    ReviewID INTEGER PRIMARY KEY AUTOINCREMENT,
     UserID INTEGER,
     DriverID INTEGER,
     OrderID INTEGER,
