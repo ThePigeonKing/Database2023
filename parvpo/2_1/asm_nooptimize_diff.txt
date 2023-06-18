@@ -1,0 +1,119 @@
+<--- CDECL vs FASTCALL --->
+1c1
+< 	.file	"cdecl.c"
+---
+> 	.file	"fastcall.c"
+13c13
+< 	subl	$16, %esp
+---
+> 	subl	$24, %esp
+15a16,17
+> 	movl	%ecx, -20(%ebp)
+> 	movl	%edx, -24(%ebp)
+18c20
+< 	movl	8(%ebp), %eax
+---
+> 	movl	-20(%ebp), %eax
+26c28
+< 	movl	16(%ebp), %eax
+---
+> 	movl	8(%ebp), %eax
+30c32
+< 	cmpl	12(%ebp), %eax
+---
+> 	cmpl	-24(%ebp), %eax
+37c39
+< 	ret
+---
+> 	ret	$4
+
+
+ <--- CDECL vs STDCALL --->
+1c1
+< 	.file	"cdecl.c"
+---
+> 	.file	"stdcall.c"
+16d15
+< 	movl	$0, -8(%ebp)
+19c18
+< 	movl	%eax, -12(%ebp)
+---
+> 	movl	%eax, -8(%ebp)
+22,25c21,22
+< 	movl	-12(%ebp), %eax
+< 	cltd
+< 	addl	%eax, -8(%ebp)
+< 	adcl	%edx, -4(%ebp)
+---
+> 	movl	-8(%ebp), %eax
+> 	addl	%eax, -4(%ebp)
+27c24
+< 	addl	%eax, -12(%ebp)
+---
+> 	addl	%eax, -8(%ebp)
+29c26
+< 	movl	-12(%ebp), %eax
+---
+> 	movl	-8(%ebp), %eax
+37c34
+< 	ret
+---
+> 	ret	$12
+76c73
+< 	pushl	$1000
+---
+> 	pushl	$100
+80c77
+< 	addl	$16, %esp
+---
+> 	addl	$4, %esp
+
+
+ <--- FASTCALL vs STDCALL --->
+1c1
+< 	.file	"fastcall.c"
+---
+> 	.file	"stdcall.c"
+13c13
+< 	subl	$24, %esp
+---
+> 	subl	$16, %esp
+16,18d15
+< 	movl	%ecx, -20(%ebp)
+< 	movl	%edx, -24(%ebp)
+< 	movl	$0, -8(%ebp)
+20,21c17,18
+< 	movl	-20(%ebp), %eax
+< 	movl	%eax, -12(%ebp)
+---
+> 	movl	8(%ebp), %eax
+> 	movl	%eax, -8(%ebp)
+24,25c21,23
+< 	movl	-12(%ebp), %eax
+< 	cltd
+---
+> 	movl	-8(%ebp), %eax
+> 	addl	%eax, -4(%ebp)
+> 	movl	16(%ebp), %eax
+27,29d24
+< 	adcl	%edx, -4(%ebp)
+< 	movl	8(%ebp), %eax
+< 	addl	%eax, -12(%ebp)
+31,32c26,27
+< 	movl	-12(%ebp), %eax
+< 	cmpl	-24(%ebp), %eax
+---
+> 	movl	-8(%ebp), %eax
+> 	cmpl	12(%ebp), %eax
+39c34
+< 	ret	$4
+---
+> 	ret	$12
+78c73
+< 	pushl	$1000
+---
+> 	pushl	$100
+82c77
+< 	addl	$16, %esp
+---
+> 	addl	$4, %esp

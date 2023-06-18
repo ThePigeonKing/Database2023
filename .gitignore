@@ -1,5 +1,9 @@
 # misc
 .DS_Store
+parvpo/2_1/asm/*.s
+parvpo/2_1/binary/cdec*
+parvpo/2_1/binary/fast*
+parvpo/2_1/binary/std*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

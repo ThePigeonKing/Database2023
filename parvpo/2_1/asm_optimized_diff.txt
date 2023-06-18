@@ -1,0 +1,73 @@
+<--- CDECL_O3 vs FASTCALL_O3 --->
+1c1
+< 	.file	"cdecl.c"
+---
+> 	.file	"fastcall.c"
+10,12c10
+< 	movl	8(%esp), %edx
+< 	movl	12(%esp), %ecx
+< 	cmpl	%edx, %eax
+---
+> 	cmpl	%edx, %ecx
+17,18c15,16
+< 	addl	%ecx, %eax
+< 	cmpl	%eax, %edx
+---
+> 	addl	%eax, %ecx
+> 	cmpl	%ecx, %edx
+21c19
+< 	ret
+---
+> 	ret	$4
+
+
+ <--- CDECL_O3 vs STDCALL_O3 --->
+1c1
+< 	.file	"cdecl.c"
+---
+> 	.file	"stdcall.c"
+21c21
+< 	ret
+---
+> 	ret	$12
+69c69
+< 	pushl	$1000
+---
+> 	pushl	$100
+74c74,75
+< 	addl	$16, %esp
+---
+> 	.cfi_def_cfa_offset 68
+> 	popl	%eax
+
+
+ <--- FASTCALL_O3 vs STDCALL_O3 --->
+1c1
+< 	.file	"fastcall.c"
+---
+> 	.file	"stdcall.c"
+10c10,12
+< 	cmpl	%edx, %ecx
+---
+> 	movl	8(%esp), %edx
+> 	movl	12(%esp), %ecx
+> 	cmpl	%edx, %eax
+15,16c17,18
+< 	addl	%eax, %ecx
+< 	cmpl	%ecx, %edx
+---
+> 	addl	%ecx, %eax
+> 	cmpl	%eax, %edx
+19c21
+< 	ret	$4
+---
+> 	ret	$12
+67c69
+< 	pushl	$1000
+---
+> 	pushl	$100
+72c74,75
+< 	addl	$16, %esp
+---
+> 	.cfi_def_cfa_offset 68
+> 	popl	%eax
