@@ -46,7 +46,7 @@ for ((i=1; i<=10; i++))
 do
     start_time=$(date +%s.%N)
 
-    ./pointer
+    ./binary/pointer_o3
 
     end_time=$(date +%s.%N)
     execution_time=$(echo "$end_time - $start_time" | bc -l)
