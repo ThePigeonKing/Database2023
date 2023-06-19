@@ -5,8 +5,8 @@ parvpo/2_1/binary/cdec*
 parvpo/2_1/binary/fast*
 parvpo/2_1/binary/std*
 parvpo/2_2/*.s
-parvpo/2_3/pointer
-parvpo/2_3/nopointer
+parvpo/2_3/binary/pointer*
+parvpo/2_3/binary/nopointer*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

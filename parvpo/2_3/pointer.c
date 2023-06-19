@@ -12,10 +12,10 @@ typedef struct Aboba
 
 int exampleFunction(Aboba *a) {
     for (int i = 0; i < 1e3; i++) {
-        a->red = i + 1;
-        a->green = i * 2;
-        a->blue = i / 2;
-        a->sus = i % 2;
+        a->red = i;
+        a->green = i;
+        a->blue = i;
+        a->sus = i;
     }
 }
 
