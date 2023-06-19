@@ -19,7 +19,7 @@ int exampleFunction(Aboba *a) {
     }
 }
 
-void measureExecutionTime(int (*function)(Aboba *)) {
+int main() {
     struct timespec startt, endt;
     double elapsed;
     clock_gettime(CLOCK_MONOTONIC, &startt);
@@ -30,11 +30,7 @@ void measureExecutionTime(int (*function)(Aboba *)) {
     // printf("Aboba?!");
     clock_gettime(CLOCK_MONOTONIC, &endt);
     elapsed = (endt.tv_sec - startt.tv_sec);
-  elapsed += (endt.tv_nsec - startt.tv_nsec) / 1000000000.0;
+    elapsed += (endt.tv_nsec - startt.tv_nsec) / 1000000000.0;
     printf("%lf\n", elapsed);
-}
-
-int main() {
-    measureExecutionTime(exampleFunction);
     return 0;
 }

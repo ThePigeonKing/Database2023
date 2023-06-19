@@ -20,7 +20,7 @@ Aboba exampleFunction(Aboba a) {
     return a;
 }
 
-void measureExecutionTime(Aboba (*function)(Aboba)) {
+int main() {
     struct timespec startt, endt;
     double elapsed;
     clock_gettime(CLOCK_MONOTONIC, &startt);
@@ -33,9 +33,5 @@ void measureExecutionTime(Aboba (*function)(Aboba)) {
     elapsed = (endt.tv_sec - startt.tv_sec);
   elapsed += (endt.tv_nsec - startt.tv_nsec) / 1000000000.0;
     printf("%lf\n", elapsed);
-}
-
-int main() {
-    measureExecutionTime(exampleFunction);
     return 0;
 }
