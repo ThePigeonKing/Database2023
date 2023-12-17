@@ -48,7 +48,9 @@ CREATE TABLE Users (
 
 ## Диаграмма
 ```mermaid
-erDiagram LR
+erDiagram 
+    direction LR
+
     Spectacles ||--o{ Performances : "has"
     Spectacles {
         int SpectacleID PK
