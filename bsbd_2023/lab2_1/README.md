@@ -166,16 +166,21 @@ GRANT SELECT ON ALL TABLES IN SCHEMA sales TO sales_consultant;
 ## Подключение к базе данных от лица каждой роли
 
 dba
+
 ![diagram](imgs/dba.png)
 
 finance_manager
+
 ![diagram](imgs/finance_manager.png)
 
 sales_manager
+
 ![diagram](imgs/sales_manager.png)
 
 sales_consultant
+
 ![diagram](imgs/sales_consultant.png)
 
 service_employee
+
 ![diagram](imgs/service_employee.png)

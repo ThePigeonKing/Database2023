@@ -3,12 +3,12 @@ services:
   postgres:
     image: postgres:14.8-alpine3.18
     environment:
-      POSTGRES_DB: "lab21"
+      POSTGRES_DB: "lab2"
       POSTGRES_USER: "tpk"
       POSTGRES_PASSWORD: "somepass"
       PGDATA: "/var/lib/postgresql/data/pgdata"
     volumes:
-      - lab21_tpk_postgres_data:/var/lib/postgresql/data
+      - lab2_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     healthcheck:
@@ -25,4 +25,4 @@ services:
           memory: 4G
 
 volumes:
-  lab21_tpk_postgres_data:
+  lab2_data:
